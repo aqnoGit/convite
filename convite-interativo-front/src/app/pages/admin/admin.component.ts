@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   carregarConvidados() {
     this.convidadoService.getConvidados().subscribe({
       next: (data) => {
-        this.convidados = data;
+        this.convidados = data.sort((a, b) => (a.nome ?? a.nomeCrianca ?? '').localeCompare(b.nome ?? b.nomeCrianca ?? ''));
         this.carregando = false;
       },
       error: (err) => {
