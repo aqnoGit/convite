@@ -43,7 +43,9 @@ jobs:
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Copy Angular build to wwwroot
-        run: cp -r convite-interativo-front/dist/convite-interativo-front/browser/* "${{env.DOTNET_ROOT}}/myapp/wwwroot/"
+        run: |
+          mkdir -p "${{env.DOTNET_ROOT}}/myapp/wwwroot"
+          cp -r convite-interativo-front/dist/convite-interativo-front/browser/* "${{env.DOTNET_ROOT}}/myapp/wwwroot/"
         shell: bash
 
       - name: Upload artifact for deployment job
