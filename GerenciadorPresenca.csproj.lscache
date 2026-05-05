@@ -60,6 +60,8 @@ Migrations/
  20260204142822_Inicial.Designer.cs
  20260323232538_TrocaConfirmadoPorNomeCrianca.cs
  20260323232538_TrocaConfirmadoPorNomeCrianca.Designer.cs
+ 20260505214315_AdicionaConvidadoPrincipalId.cs
+ 20260505214315_AdicionaConvidadoPrincipalId.Designer.cs
  AppDbContextModelSnapshot.cs
 Model/Convidado.cs
 obj/Debug/net8.0/

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConvidadoService, Convidado } from '../../services/convidado.service';
 
+interface GrupoConvidado {
+  principal: Convidado;
+  acompanhantes: Convidado[];
+}
+
 @Component({
   selector: 'app-admin',
   imports: [CommonModule],
@@ -10,6 +15,7 @@ import { ConvidadoService, Convidado } from '../../services/convidado.service';
 })
 export class AdminComponent implements OnInit {
   convidados: Convidado[] = [];
+  grupos: GrupoConvidado[] = [];
   carregando: boolean = true;
 
   constructor(private convidadoService: ConvidadoService) { }
@@ -17,17 +23,12 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.carregarConvidados();
   }
-  get totalAdultos(): number {
-    return this.convidados.filter(c => !c.nomeCrianca).length;
-  }
 
-  get totalCriancas(): number {
-    return this.convidados.filter(c => !!c.nomeCrianca).length;
-  }
   carregarConvidados() {
     this.convidadoService.getConvidados().subscribe({
       next: (data) => {
-        this.convidados = data.sort((a, b) => (a.nome ?? a.nomeCrianca ?? '').localeCompare(b.nome ?? b.nomeCrianca ?? ''));
+        this.convidados = data;
+        this.grupos = this.agrupar(data);
         this.carregando = false;
       },
       error: (err) => {
@@ -35,5 +36,13 @@ export class AdminComponent implements OnInit {
         this.carregando = false;
       },
     });
+  }
+
+  agrupar(data: Convidado[]): GrupoConvidado[] {
+    const principais = data.filter(c => !c.convidadoPrincipalId).sort((a, b) => (a.nome ?? '').localeCompare(b.nome ?? ''));
+    return principais.map(p => ({
+      principal: p,
+      acompanhantes: data.filter(c => c.convidadoPrincipalId === p.id)
+    }));
   }
 }

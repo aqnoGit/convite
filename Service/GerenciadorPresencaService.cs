@@ -15,7 +15,17 @@ namespace GerenciadorPresenca.Service
 
         public async Task Confirmar(List<Convidado> convidados)
         {
-            _appDbContext.Convidados.AddRange(convidados);
+            var principal = convidados.FirstOrDefault();
+            if (principal == null) return;
+
+            _appDbContext.Convidados.Add(principal);
+            await _appDbContext.SaveChangesAsync();
+
+            foreach (var acompanhante in convidados.Skip(1))
+            {
+                acompanhante.ConvidadoPrincipalId = principal.Id;
+                _appDbContext.Convidados.Add(acompanhante);
+            }
             await _appDbContext.SaveChangesAsync();
         }
 

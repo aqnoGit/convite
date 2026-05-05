@@ -6,6 +6,7 @@ export interface Convidado {
   id?: number;
   nome: string | null;
   nomeCrianca: string | null;
+  convidadoPrincipalId?: number | null;
 }
 
 @Injectable({

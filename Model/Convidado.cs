@@ -10,5 +10,6 @@ namespace GerenciadorPresenca.Model
         public int Id { get; set; }
         public string? Nome { get; set; }
         public string? NomeCrianca { get; set; }
+        public int? ConvidadoPrincipalId { get; set; }
     }
 }
