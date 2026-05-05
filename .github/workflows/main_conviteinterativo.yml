@@ -20,6 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Build Angular
+        working-directory: convite-interativo-front
+        run: |
+          npm install
+          npm run build -- --configuration production
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
@@ -30,6 +41,10 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+
+      - name: Copy Angular build to wwwroot
+        run: cp -r convite-interativo-front/dist/convite-interativo-front/browser/* "${{env.DOTNET_ROOT}}/myapp/wwwroot/"
+        shell: bash
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4

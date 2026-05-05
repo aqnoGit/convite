@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://<sua-webapp>.azurewebsites.net")
+        policy.WithOrigins("http://localhost:4200", "https://convite-eme0dsdbe7e9hmfq.canadacentral-01.azurewebsites.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -37,7 +37,10 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAngular");
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseAuthorization();
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 app.Run();
 
