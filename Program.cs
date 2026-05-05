@@ -34,6 +34,17 @@ var app = builder.Build();
 //{
     app.UseSwagger();
     app.UseSwaggerUI();
+
+app.UseExceptionHandler(a => a.Run(async context =>
+{
+    var ex = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>();
+    if (ex != null)
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = ex.Error.Message, detail = ex.Error.ToString() }));
+    }
+}));
 //}
 
 app.UseHttpsRedirection();
