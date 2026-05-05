@@ -61,7 +61,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'conviteinterativo'
+          app-name: 'convite'
           slot-name: 'Production'
           package: .
           
