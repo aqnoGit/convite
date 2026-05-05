@@ -394,6 +394,8 @@ Service/
   WindowsBase.dll
  microsoft.openapi/1.6.14/lib/netstandard2.0/Microsoft.OpenApi.dll
  microsoft.sqlserver.server/1.0.0/lib/netstandard2.0/Microsoft.SqlServer.Server.dll
+ mysqlconnector/2.3.5/lib/net8.0/MySqlConnector.dll
+ pomelo.entityframeworkcore.mysql/8.0.0/lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll
  swashbuckle.aspnetcore.swagger/6.6.2/lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll
  swashbuckle.aspnetcore.swaggergen/6.6.2/lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
  swashbuckle.aspnetcore.swaggerui/6.6.2/lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll

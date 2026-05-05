@@ -15,8 +15,9 @@ namespace GerenciadorPresenca.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "NomeCrianca",
                 table: "Convidados",
-                type: "nvarchar(max)",
-                nullable: true);
+                type: "longtext",
+                nullable: true)
+                .Annotation("MySql:CharSet", "utf8mb4");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
