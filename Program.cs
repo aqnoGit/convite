@@ -10,8 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AppDbConnectionString");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddScoped<IGerenciadorService, GerenciadorPresencaService>();
 
 builder.Services.AddControllers();
@@ -20,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")  // URL do Angular
+        policy.WithOrigins("http://localhost:4200", "https://<sua-webapp>.azurewebsites.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
