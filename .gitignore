@@ -1,0 +1,13 @@
+﻿## Ignorar arquivos de compilação .NET
+bin/
+obj/
+.vs/
+
+## Ignorar arquivos do Angular
+convite-interativo-front/node_modules/
+convite-interativo-front/.angular/
+convite-interativo-front/dist/
+
+## Ignorar configurações locais
+*.user
+*.suo

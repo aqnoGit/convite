@@ -1,0 +1,53 @@
+/* Garante que nada vaze horizontalmente */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fundo roxo cobrindo toda a tela */
+.bg {
+  background-color: #f7e2dd;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Animação de bounce para os ícones */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Delays para cada ícone */
+.delay-0 {
+  animation-delay: 0s;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
